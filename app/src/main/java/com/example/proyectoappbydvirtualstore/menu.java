@@ -4,49 +4,40 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-
-
-public class MainActivity extends AppCompatActivity {
+public class menu extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_menu);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        Button iniciarSesionButton = findViewById(R.id.iniciarsesion);
-        iniciarSesionButton.setOnClickListener(view -> {
-            // Crear un Intent para abrir la actividad "menu.java"
-            Intent intent = new Intent(MainActivity.this, menu.class);
-            startActivity(intent);
-
-        });
-
-        // Agrega el código para abrir la actividad de registro al hacer clic en el TextView
-        TextView textView3 = findViewById(R.id.textView3);
-        textView3.setOnClickListener(new View.OnClickListener() {
+        Button volverButton = findViewById(R.id.volver);
+        volverButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                activity_registro();
+                finish();
+            }
+        });
+        ImageView mapImageView = findViewById(R.id.map);
+        mapImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Crear un Intent para abrir la actividad "mapa.java"
+                Intent intent = new Intent(menu.this, mapa.class);
+                startActivity(intent);
             }
         });
     }
-
-    public void activity_registro() {
-        Intent intent = new Intent(MainActivity.this,registro.class);
-        startActivity(intent);
-    }
-
-
 }
